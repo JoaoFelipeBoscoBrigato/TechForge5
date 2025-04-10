@@ -1,0 +1,6 @@
+{
+  "name": "Camiseta Exemplo",
+  "price": 29.99,
+  "description": "Descrição da camiseta.",
+  "stock": 100
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Loja de Camisas Esportivas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f05454;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: url('https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 0;
+        }
+        
+        .register-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .logo p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .password-strength {
+            height: 5px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: #d93b3b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(240, 84, 84, 0.4);
+        }
+        
+        .links {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        .links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .links a:hover {
+            color: var(--primary);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsivo */
+        @media (max-width: 576px) {
+            .register-container {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">
+            <h1>Criar Nova Conta</h1>
+            <p>Preencha seus dados para se registrar</p>
+        </div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" class="form-control" placeholder="Seu nome completo" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" class="form-control" placeholder="000.000.000-00" required>
+                <div class="error-message" id="cpfError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required oninput="checkPasswordStrength()">
+                <div class="password-strength">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <small style="color: rgba(255,255,255,0.6); display: block; margin-top: 5px;">Mínimo 8 caracteres (letras e números)</small>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Senha</label>
+                <input type="password" id="confirmPassword" class="form-control" placeholder="••••••••" required>
+                <div class="error-message" id="confirmError"></div>
+            </div>
+            
+            <button type="button" class="btn" onclick="register()">
+                <i class="fas fa-user-plus"></i> Cadastrar
+            </button>
+            
+            <div class="links">
+                <a href="login.html">Já tem uma conta? Faça login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Validar CPF
+        function validateCPF(cpf) {
+            cpf = cpf.replace(/[^\d]+/g,'');
+            if(cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            
+            let sum = 0;
+            for (let i = 0; i < 9; i++) {
+                sum += parseInt(cpf.charAt(i)) * (10 - i);
+            }
+            let remainder = 11 - (sum % 11);
+            let digit1 = remainder >= 10 ? 0 : remainder;
+            
+            sum = 0;
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(cpf.charAt(i)) * (11 - i);
+            }
+            remainder = 11 - (sum % 11);
+            let digit2 = remainder >= 10 ? 0 : remainder;
+            
+            return digit1 === parseInt(cpf.charAt(9)) && digit2 === parseInt(cpf.charAt(10));
+        }
+        
+        // Verificar força da senha
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.getElementById('strengthBar');
+            
+            let strength = 0;
+            if (password.length >= 8) strength += 1;
+            if (password.match(/[a-z]/)) strength += 1;
+            if (password.match(/[A-Z]/)) strength += 1;
+            if (password.match(/[0-9]/)) strength += 1;
+            if (password.match(/[^a-zA-Z0-9]/)) strength += 1;
+            
+            const width = (strength / 5) * 100;
+            strengthBar.style.width = width + '%';
+            
+            if (strength <= 2) {
+                strengthBar.style.backgroundColor = '#ff6b6b';
+            } else if (strength <= 4) {
+                strengthBar.style.backgroundColor = '#fcc419';
+            } else {
+                strengthBar.style.backgroundColor = '#51cf66';
+            }
+        }
+        
+        // Registrar usuário
+        function register() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const cpf = document.getElementById('cpf').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Resetar mensagens de erro
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('cpfError').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('confirmError').style.display = 'none';
+            
+            // Validações
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').textContent = 'E-mail inválido';
+                document.getElementById('emailError').style.display = 'block';
+                return;
+            }
+            
+            if (!validateCPF(cpf)) {
+                document.getElementById('cpfError').textContent = 'CPF inválido';
+                document.getElementById('cpfError').style.display = 'block';
+                return;
+            }
+            
+            if (password.length < 8) {
+                document.getElementById('passwordError').textContent = 'A senha deve ter no mínimo 8 caracteres';
+                document.getElementById('passwordError').style.display = 'block';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                document.getElementById('confirmError').textContent = 'As senhas não coincidem';
+                document.getElementById('confirmError').style.display = 'block';
+                return;
+            }
+            
+            // Simulação de cadastro bem-sucedido
+            alert('Cadastro realizado com sucesso!\nRedirecionando para login...');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

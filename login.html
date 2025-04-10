@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Camisas Esportivas</title>
+    
+    <!-- Link para o CSS do Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #2a2a3a, #1a1a2e);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            color: #f05454;
+        }
+        
+        /* Carrossel reduzido */
+        .top-carousel {
+            width: 100%;
+            height: 350px; /* Altura reduzida */
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Hero Section com fundo em degrade */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2a2a3a 0%, #1a1a2e 100%);
+            margin-top: -5px; /* Para colar no carrossel */
+        }
+        
+        .hero h1 {
+            font-size: 2.3rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ddd;
+        }
+        
+        .btn {
+            background-color: #f05454;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(240, 84, 84, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: #d93b3b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(240, 84, 84, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0f0f1a;
+            color: #aaa;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1 style="font-size: 1.5rem;">Loja de Camisas Esportivas</h1>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre Nós</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Carrossel no topo (reduzido) -->
+    <div class="swiper top-carousel">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camisa Esportiva 1">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camisa Esportiva 2">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Camisa Esportiva 3">
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Hero Section com degrade escuro -->
+    <section class="hero">
+        <h1>Camisas que Inspiram</h1>
+        <p>Descubra nossa coleção de camisas esportivas de alta qualidade.</p>
+        <button class="btn" onclick="window.location.href='produtos.html'">Ver Produtos</button>
+    </section>
+    
+    <footer>
+        <p>© 2025 Loja de Camisas Esportivas. Todos os direitos reservados.</p>
+    </footer>
+    
+    <!-- Scripts do Swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        // Inicialização do Swiper
+        var swiper = new Swiper(".top-carousel", {
+            spaceBetween: 0,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+</body>
+</html>
