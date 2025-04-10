@@ -1,19 +1,21 @@
-const products = [
-    { id: 1, name: "Camiseta A", price: 29.99, img: "img/camiseta1.jpg" },
-    { id: 2, name: "Camiseta B", price: 39.99, img: "img/camiseta2.jpg" },
-    { id: 3, name: "Camiseta C", price: 49.99, img: "img/camiseta3.jpg" },
-];
-
-const productContainer = document.querySelector('.product-container');
-
-products.forEach(product => {
-    const productDiv = document.createElement('div');
-    productDiv.classList.add('product');
-    productDiv.innerHTML = `
-        <img src="${product.img}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>Preço: R$${product.price.toFixed(2)}</p>
-        <button>Adicionar ao Carrinho</button>
-    `;
-    productContainer.appendChild(productDiv);
-});
+async function carregarProdutos() {
+    try {
+      const response = await fetch('http://localhost:5500/api/produtos');
+      const produtos = await response.json();
+      
+      // Atualiza a interface
+      produtos.forEach(produto => {
+        document.getElementById('produtos').innerHTML += `
+          <div class="produto">
+            <h3>${produto.nome}</h3>
+            <p>R$ ${produto.preco.toFixed(2)}</p>
+          </div>
+        `;
+      });
+    } catch (error) {
+      console.error("Erro ao carregar produtos:", error);
+    }
+  }
+  
+  // Executa quando a página carrega
+  window.onload = carregarProdutos;
