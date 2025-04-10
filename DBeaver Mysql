@@ -1,0 +1,44 @@
+-- Tabela de Produtos
+CREATE TABLE produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2) NOT NULL,
+    imagem VARCHAR(255),
+    estoque INT NOT NULL
+);
+
+-- Tabela de Clientes
+CREATE TABLE clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    telefone VARCHAR(20),
+    senha_hash VARCHAR(255) -- Para cadastro/login
+);
+
+-- Tabela de Pedidos
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT NOT NULL,
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('pendente', 'pago', 'enviado', 'entregue') DEFAULT 'pendente',
+    total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
+);
+
+-- Tabela de Itens do Pedido
+CREATE TABLE pedido_itens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+
+INSERT INTO produtos (nome, descricao, preco, estoque) VALUES
+('Camisa Brasil 2022', 'Edição especial Copa do Mundo', 279.90, 50),
+('Camisa Flamengo 2023', 'Material dry-fit', 249.90, 30),
+('Camisa Barcelona 2023', 'Temporada 2023/24', 299.90, 40);
