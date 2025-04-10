@@ -1,29 +1,35 @@
-const db = require('../config/db');
-
-const Product = {
-    create: (productData, callback) => {
-        const { name, price, description, stock } = productData;
-        const sql = 'INSERT INTO products (name, price, description, stock) VALUES (?, ?, ?, ?)';
-        db.query(sql, [name, price, description, stock], callback);
+const produtos = [
+    {
+      id: 1,
+      nome: "Camisa Flamengo 2023",
+      preco: 249.90,
+      descricao: "Camisa oficial do Flamengo temporada 2023",
+      time: "Flamengo"
     },
-    findAll: (page, limit, callback) => {
-        const offset = (page - 1) * limit;
-        const sql = 'SELECT * FROM products LIMIT ? OFFSET ?';
-        db.query(sql, [limit, offset], callback);
-    },
-    findById: (id, callback) => {
-        const sql = 'SELECT * FROM products WHERE id = ?';
-        db.query(sql, [id], callback);
-    },
-    update: (id, productData, callback) => {
-        const { name, price, description, stock } = productData;
-        const sql = 'UPDATE products SET name = ?, price = ?, description = ?, stock = ? WHERE id = ?';
-        db.query(sql, [name, price, description, stock, id], callback);
-    },
-    delete: (id, callback) => {
-        const sql = 'DELETE FROM products WHERE id = ?';
-        db.query(sql, [id], callback);
-    },
-};
-
-module.exports = Product;
+    {
+        id: 2,
+        nome: "Camisa Brasil 2022",
+        preco: 279.90,
+        descricao: "Camisa oficial do Brasil temporada 2023",
+        time: "Brasil"
+      },
+      {
+        id: 3,
+        nome: "Camisa Barcelona 2023",
+        preco: 299.90,
+        descricao: "Camisa oficial do Barcelona temporada 2023",
+        time: "Bracelona"
+      },
+      {
+        id: 1,
+        nome: "Camisa Real Madrid 2023",
+        preco: 299.90,
+        descricao: "Camisa oficial do Real Madrid temporada 2023",
+        time: "Real Madrid"
+      },
+  ];
+  
+  module.exports = {
+    findAll: () => produtos,
+    findById: (id) => produtos.find(p => p.id === id)
+  };

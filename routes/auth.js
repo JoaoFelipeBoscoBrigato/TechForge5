@@ -71,4 +71,11 @@ router.post('/register', [
     }
 });
 
+const jwt = require('jsonwebtoken');
+router.post('/login', (req, res) => {
+  // Verifica credenciais
+  const token = jwt.sign({ userId: 1 }, 'SEGREDO', { expiresIn: '1h' });
+  res.json({ token });
+});
+
 module.exports = router;

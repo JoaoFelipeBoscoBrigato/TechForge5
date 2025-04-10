@@ -15,4 +15,14 @@ db.connect((err) => {
     console.log('MySQL connected');
 });
 
+import mysql from 'mysql2/promise';
+
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'tshirt-store'
+});
+
+export default pool;
 module.exports = db;

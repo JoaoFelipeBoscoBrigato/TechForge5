@@ -1,20 +1,19 @@
-// app.js
-const db = require('./db'); // Importa a conexão do banco de dados
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const produtoRoutes = require('./routes/produtos');
 
-// Teste uma consulta simples
-db.query('SELECT * FROM sua_tabela', (err, results) => {
-    if (err) {
-        console.error('Error executing query:', err);
-        return;
-    }
-    console.log('Query results:', results);
-});
+const app = express();
 
-// Fechar a conexão quando terminar
-db.end(err => {
-    if (err) {
-        console.error('Error closing the connection:', err);
-    } else {
-        console.log('Connection closed.');
-    }
+// Middlewares
+app.use(cors());
+app.use(bodyParser.json());
+
+// Rotas
+app.use('/api/produtos', produtoRoutes);
+
+// Inicia servidor
+const PORT = process.env.PORT || 5500;
+app.listen(PORT, () => {
+  console.log(`API rodando em http://localhost:${PORT}`);
 });
