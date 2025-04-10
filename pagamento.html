@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento</title>
+    <style>
+        .payment {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .produto-resumo {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script>
+        // Mostra os dados do produto e do cliente
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const produtoId = urlParams.get('produto');
+            
+            const produtos = {
+                "flamengo2023": { nome: "Camisa Flamengo 2023", preco: 249.90 },
+                "brasil2022": { nome: "Camisa Brasil 2022", preco: 279.90 },
+                "realmadrid2023": { nome: "Camisa Real Madrid 2023", preco: 299.90 }
+            };
+
+            if (produtos[produtoId]) {
+                document.getElementById('produto-nome').textContent = produtos[produtoId].nome;
+                document.getElementById('produto-preco').textContent = `R$ ${produtos[produtoId].preco.toFixed(2)}`;
+                document.getElementById('cliente-nome').textContent = urlParams.get('nome');
+            }
+        };
+
+        function finalizarCompra() {
+            alert('Compra finalizada com sucesso!');
+            window.location.href = 'produtos.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="payment">
+        <h1>Pagamento</h1>
+        
+        <div class="produto-resumo">
+            <h2>Resumo da Compra</h2>
+            <p id="produto-nome"></p>
+            <p id="produto-preco"></p>
+            <p>Entregar para: <span id="cliente-nome"></span></p>
+        </div>
+
+        <h2>Método de Pagamento</h2>
+        <form onsubmit="finalizarCompra(); return false;">
+            <label>
+                <input type="radio" name="pagamento" value="credito" checked> Cartão de Crédito
+            </label>
+            <input type="text" placeholder="Número do Cartão" required>
+            <input type="text" placeholder="Nome no Cartão" required>
+            <input type="text" placeholder="Validade (MM/AA)" required>
+            <input type="text" placeholder="CVV" required>
+            
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+</body>
+</html>

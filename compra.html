@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Compra</title>
+    <style>
+        .checkout {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .produto-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+    </style>
+    <script>
+        // Pega o produto da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const produtoId = urlParams.get('produto');
+        
+        // Dados dos produtos
+        const produtos = {
+            "flamengo2023": {
+                nome: "Camisa Flamengo 2023",
+                preco: 249.90,
+                descricao: "Camisa oficial do Flamengo temporada 2023, material dry-fit."
+            },
+            "brasil2022": {
+                nome: "Camisa Brasil 2022",
+                preco: 279.90,
+                descricao: "Camisa da seleção brasileira, edição especial Copa do Mundo."
+            },
+            "realmadrid2023": {
+                nome: "Camisa Real Madrid 2023",
+                preco: 299.90,
+                descricao: "Camisa titular do Real Madrid, temporada 2023/24."
+            }
+        };
+
+        // Atualiza a página com os dados do produto
+        window.onload = function() {
+            const produto = produtos[produtoId];
+            if (produto) {
+                document.getElementById('produto-nome').textContent = produto.nome;
+                document.getElementById('produto-preco').textContent = `R$ ${produto.preco.toFixed(2)}`;
+                document.getElementById('produto-descricao').textContent = produto.descricao;
+                document.getElementById('produto-id').value = produtoId;
+            } else {
+                window.location.href = 'produtos.html';
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="checkout">
+        <h1>Finalizar Compra</h1>
+        
+        <div class="produto-info">
+            <h2 id="produto-nome"></h2>
+            <p id="produto-descricao"></p>
+            <p><strong id="produto-preco"></strong></p>
+        </div>
+
+        <form action="pagamento.html" method="get">
+            <input type="hidden" id="produto-id" name="produto">
+            
+            <h2>Informações Pessoais</h2>
+            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="tel" name="telefone" placeholder="Telefone" required>
+            
+            <h2>Endereço</h2>
+            <input type="text" name="cep" placeholder="CEP" required>
+            <input type="text" name="endereco" placeholder="Endereço" required>
+            
+            <button type="submit">Continuar para Pagamento</button>
+        </form>
+    </div>
+</body>
+</html>

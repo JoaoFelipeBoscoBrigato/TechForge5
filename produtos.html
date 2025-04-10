@@ -146,6 +146,49 @@
             padding: 30px 0;
             margin-top: 50px;
         }
+
+        .btn-comprar {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white !important;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-comprar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-comprar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-comprar:hover::before {
+            left: 100%;
+        }
+        
+        .btn-comprar:active {
+            transform: translateY(1px);
+            }
     </style>
 </head>
 <body>
@@ -168,50 +211,55 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Camisa Flamengo">
+                    <img src="img/flamengo (1).jpg" alt="Camisa Flamengo">
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Camisa Flamengo 2023</h3>
                     <p class="product-price">R$ 249,90</p>
                     <p class="product-description">Camisa oficial do Flamengo temporada 2023, material dry-fit.</p>
-                    <button class="btn">Comprar</button>
+                   
+                    <a href="compra.html?produto=flamengo2023&preco=249.90" class="btn-comprar">Comprar</a>
                 </div>
             </div>
             
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Camisa Brasil">
+                    <img src="img/brasil.jpg" alt="Camisa Brasil">
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Camisa Brasil 2022</h3>
                     <p class="product-price">R$ 279,90</p>
                     <p class="product-description">Camisa da seleção brasileira, edição especial Copa do Mundo.</p>
-                    <button class="btn">Comprar</button>
+                    
+                    <a href="compra.html?produto=brasil2022&preco=279.90" class="btn-comprar">Comprar</a>
                 </div>
             </div>
             
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Camisa Barcelona">
+                    <img src="img/barcelona.jpg" alt="Camisa Barcelona">
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Camisa Barcelona 2023</h3>
                     <p class="product-price">R$ 299,90</p>
                     <p class="product-description">Camisa titular do Barcelona, temporada 2023/24.</p>
-                    <button class="btn">Comprar</button>
+                    
+                    <a href="compra.html?produto=barcelona2023&preco=299.90" class="btn-comprar">Comprar</a>
                 </div>
             </div>
             
             <div class="product-card">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Camisa Real Madrid">
+                    <img src="img/real madrid.jpg" alt="Camisa Real Madrid">
                 </div>
                 <div class="product-info">
                     <h3 class="product-title">Camisa Real Madrid 2023</h3>
                     <p class="product-price">R$ 299,90</p>
                     <p class="product-description">Camisa do Real Madrid, edição especial Champions League.</p>
-                    <button class="btn">Comprar</button>
+                    <a href="compra.html?produto=barcelona2023&preco=299.90" class="btn-comprar">Comprar</a>
                 </div>
+
+                
             </div>
         </div>
     </div>
